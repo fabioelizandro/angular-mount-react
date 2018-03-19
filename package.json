@@ -1,6 +1,6 @@
 {
   "name": "angular-mount-react",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "repository": "fabioelizandro/angular-mount-react",
   "author": "Fabio Elizandro <fabio@elizandro.com.br>",
