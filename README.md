@@ -8,13 +8,33 @@ Angular directive to integrate React components into angular application
 
 ## How to use
 
-### Add Angular module
-
 ```js
-const angular = require('angular');
-const mountReact = require('angular-mount-react');
+const HelloComponent = ({ name, upperCase }) => {
+  return (
+    <span>
+      {upperCase(`Hello ${name}`)}
+    </span>
+  );
+};
 
-angular.module('app', [
-  mountReact().name
-]);
+angular.module('app', [mountReact().name])
+  .factory('upperCase', () => {
+    return (string) => string.toUpperCase()
+  })
+  .component('hello', {
+    template: `
+      <mount-react component="$ctrl.component" props="{name: $ctrl.name}" inject="['upperCase']">
+      </mount-react>
+    `,
+    controller: () => {
+      return {
+        component: HelloComponent
+      };
+    },
+    bindings: {
+      name: '@'
+    }
+  });
 ```
+
+[For a full example](https://github.com/fabioelizandro/angular-mount-react-example)
